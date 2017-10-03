@@ -9,7 +9,7 @@
 <body>
 <%
 for(int i = 0; i<10 ;i++){
-	out.println("Durchlauf = " + i + "<br>");
+	out.println(i + "<br>");
 }
 %>
 </body>
