@@ -41,11 +41,11 @@ public class LoginServlet extends HttpServlet {
 		User user;
 		RequestDispatcher dispatcher;
 		
-		userId = request.getParameter("user");
+		userId = request.getParameter("usr");
 		pwd = request.getParameter("pwd");
 		
 		if(ls.checkLogin(userId, pwd)){
-			user = ls.getUser(userId);
+			user = new User(userId);
 			user.setPwd(pwd);
 			
 			request.setAttribute("user", user);

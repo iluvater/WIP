@@ -10,7 +10,7 @@
 <%
 	User user = (User) request.getAttribute("user");
 %>
-Hello <%user.getUname(); %> <br>
+Hello <% user.getUname(); %> <br>
 Your login was successful.
 </body>
 </html>
