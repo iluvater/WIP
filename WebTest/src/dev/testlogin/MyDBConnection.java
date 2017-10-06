@@ -16,16 +16,16 @@ public class MyDBConnection {
 	  private static String dbHost = "localhost";
 	 
 	  // Port -- Standard: 3306
-	  private  String dbPort = "3306";
+	  private static String dbPort = "3306";
 	 
 	  // Datenbankname
-	  private  String database = "webtest";
+	  private static String database = "webtest";
 	 
 	  // Datenbankuser
-	  private  String dbUser = "db_test";
+	  private static String dbUser = "db_test";
 	 
 	  // Datenbankpasswort
-	  private  String dbPassword = "test1234";
+	  private static String dbPassword = "test1234";
 	  
 	  public MyDBConnection(){
 		  try {
@@ -33,7 +33,7 @@ public class MyDBConnection {
 		      // Datenbanktreiber für ODBC Schnittstellen laden.
 		      // Für verschiedene ODBC-Datenbanken muss dieser Treiber
 		      // nur einmal geladen werden.
-		      Class.forName("com.mysql.jdbc.Driver");
+		      Class.forName("com.mysql.jdbc.Driver.class");
 		 
 		      // Verbindung zur ODBC-Datenbank 'sakila' herstellen.
 		      // Es wird die JDBC-ODBC-Brücke verwendet.
@@ -47,8 +47,16 @@ public class MyDBConnection {
 		    }
 	  }
 	  
+	  private static Connection getInstance()
+	  {
+	    if(conn == null)
+	      new MyDBConnection();
+	    return conn;
+	  }
+	  
 	  public List<User> getUsers(){
 		  List<User> users = new ArrayList<User>();
+		  conn = getInstance();
 		  
 		  if(conn != null)
 		    {
@@ -79,6 +87,8 @@ public class MyDBConnection {
 	  
 	  public User getUser(String userId){
 		  User user = null;
+		  conn = getInstance();
+		  
 		  if(conn != null)
 		    {
 		      // Anfrage-Statement erzeugen.
