@@ -3,7 +3,7 @@ package dev.testlogin;
 public class LoginService {
 	
 	public boolean checkLogin(String userId, String pwd){
-		if (userId != null && pwd != null){
+		if (userId == null){
 			return true;
 		}else{
 			return false;

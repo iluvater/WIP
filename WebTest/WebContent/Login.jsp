@@ -7,7 +7,7 @@
 <title>Login Page</title>
 </head>
 <body>
-<form action="/LoginServlet" method="post">
+<form action="./LoginServlet" method="post">
 	User <input name="usr" type="text" value=""><br>
 	Password <input name="pwd" type="password" value=""><br>
 	<input type="submit" value="Login" class="button">	
