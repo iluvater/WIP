@@ -45,8 +45,7 @@ public class LoginServlet extends HttpServlet {
 		pwd = request.getParameter("pwd");
 		
 		if(ls.checkLogin(userId, pwd)){
-			user = new User(userId);
-			user.setPwd(pwd);
+			user = ls.getUser(userId);
 			
 			request.setAttribute("user", user);
 			

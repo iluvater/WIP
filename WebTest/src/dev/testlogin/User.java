@@ -7,9 +7,10 @@ public class User {
 	private String uname;
 	
 	
-	public User (String userId){
+	public User (String userId, String pwd, String uname){
 		this.userId = userId;
-		this.uname = userId;
+		this.uname = uname;
+		this.pwd = pwd;
 	}
 
 
