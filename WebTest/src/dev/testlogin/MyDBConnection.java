@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import com.mysql.jdbc.Driver;
 
 public class MyDBConnection {
 
@@ -22,10 +23,10 @@ public class MyDBConnection {
 	  private static String database = "webtest";
 	 
 	  // Datenbankuser
-	  private static String dbUser = "db_test";
+	  private static String dbUser = "root";
 	 
 	  // Datenbankpasswort
-	  private static String dbPassword = "test1234";
+	  private static String dbPassword = "root";
 	  
 	  public MyDBConnection(){
 		  try {
@@ -33,17 +34,18 @@ public class MyDBConnection {
 		      // Datenbanktreiber für ODBC Schnittstellen laden.
 		      // Für verschiedene ODBC-Datenbanken muss dieser Treiber
 		      // nur einmal geladen werden.
-		      Class.forName("com.mysql.jdbc.Driver.class");
+		      Class.forName("com.mysql.jdbc.Driver");
 		 
 		      // Verbindung zur ODBC-Datenbank 'sakila' herstellen.
 		      // Es wird die JDBC-ODBC-Brücke verwendet.
 		      conn = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":"
-		          + dbPort + "/" + database + "?", dbUser, dbPassword);
+		              + dbPort + "/" + database + "?" + "user=" + dbUser);
 		    } catch (ClassNotFoundException e) {
 		      System.out.println("Treiber nicht gefunden");
-		      System.out.println(e);
+		      e.printStackTrace();
 		    } catch (SQLException e) {
 		      System.out.println("Connect nicht moeglich");
+		      e.printStackTrace();
 		    }
 	  }
 	  
@@ -97,15 +99,15 @@ public class MyDBConnection {
 		        query = conn.createStatement();
 		 
 		        // Ergebnistabelle erzeugen und abholen.
-		        String sql = "SELECT * FROM user WHERE userid=" + userId;
+		        String sql = "SELECT * FROM user WHERE userid='" + userId + "'";
 		        ResultSet result = query.executeQuery(sql);
 		 
 		        // Ergebnissätze durchfahren.
 		        while (result.next()) {
 		          String userID = Integer.toString(result.getInt("userid")); // Alternativ: result.getString(1);
 		          String uname = result.getString("uname"); // Alternativ: result.getString(2);
-		          String pwd = result.getNString("passwd");
-		          user = new User(userID, uname, pwd);
+		          String pwd = result.getString("passwd");
+		          user = new User(userID, pwd, uname);
 		        }
 		      } catch (SQLException e) {
 		        e.printStackTrace();
