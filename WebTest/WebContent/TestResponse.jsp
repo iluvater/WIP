@@ -84,7 +84,7 @@
 The following input will appear as "Your result" after submitting
 --%>
 Your input:<br>
-<form action = "/examples/code_implicit_request_object.jsp" method="GET">
+<form action = "./ServletTest" method="GET">
 <input type="hidden" name="hiddenParm" value="hiddenValue">
 <input type="text" name="freistil">
 <input type="submit" name="form_submit" value="ok">
