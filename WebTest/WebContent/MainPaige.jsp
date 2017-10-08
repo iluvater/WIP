@@ -12,5 +12,9 @@
 %>
 Hello <% out.println(user.getUname()); %> <br>
 Your login was successful.
+
+<form action="./SendMailServlet" method="post">
+	<input type="submit" value="Send Mail" class="button">
+</form>
 </body>
 </html>
