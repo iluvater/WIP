@@ -26,7 +26,7 @@ public class SendMailService {
 			//Get Mail Session
 			getMailSession = Session.getDefaultInstance(mailServerProperties, null);
 			generateMailMessage = new MimeMessage(getMailSession);
-			generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress("ture.kuesener@gmx.de"));
+			generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress("test@test.com"));
 			//generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress("test2@crunchify.com"));
 			generateMailMessage.setSubject("Greetings from Crunchify..");
 			String emailBody = "Test email by Crunchify.com JavaMail API example. " + "<br><br> Regards, <br>Crunchify Admin";
